@@ -7,10 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class MapperApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(MapperApplication.class, args);
-
-
-	}
-
+       public static void main(String[] args) { SpringApplication.run(MapperApplication.class, args);}
 }
