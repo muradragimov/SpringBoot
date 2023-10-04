@@ -34,5 +34,4 @@ public class TeacherController {
     public  void delete(@RequestParam String name){
         teacherService.delete(name);
     }
-
 }
