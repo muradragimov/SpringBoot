@@ -4,7 +4,6 @@ package com.example.mapper.controller;
 import com.example.mapper.model.dto.CourseDto;
 import com.example.mapper.service.CourseService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

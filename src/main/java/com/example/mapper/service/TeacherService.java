@@ -5,7 +5,6 @@ import com.example.mapper.dao.repository.TeacherRepository;
 import com.example.mapper.mapper.TeacherMapper;
 import com.example.mapper.model.dto.TeacherDto;
 import com.example.mapper.model.exceptionHandler.NotFoundExceptionHandler;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
