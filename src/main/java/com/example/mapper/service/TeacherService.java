@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 @Service
 public class TeacherService {
 
-    private TeacherRepository teacherRepository;
+    private final TeacherRepository teacherRepository;
 
     public TeacherService(TeacherRepository teacherRepository) {
         this.teacherRepository = teacherRepository;

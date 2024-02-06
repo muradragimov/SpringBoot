@@ -9,7 +9,7 @@ import java.util.List;
 @RestController("/teacher")
 public class TeacherController {
 
-    private TeacherService teacherService;
+    private final TeacherService teacherService;
 
     public TeacherController(TeacherService teacherService) {
         this.teacherService = teacherService;
