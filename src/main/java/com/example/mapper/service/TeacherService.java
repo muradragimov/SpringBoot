@@ -14,8 +14,11 @@ import java.util.NoSuchElementException;
 @Service
 public class TeacherService {
 
-    @Autowired
     private TeacherRepository teacherRepository;
+
+    public TeacherService(TeacherRepository teacherRepository) {
+        this.teacherRepository = teacherRepository;
+    }
 
     public List<TeacherDto> getAll(){
         List<TeacherEntity> teacherEntity = teacherRepository.findAll();
@@ -28,6 +31,7 @@ public class TeacherService {
     }
 
     public void add(TeacherDto teacherDto){
+        System.out.println("Hello");
         teacherRepository.save(TeacherMapper.INSTANCE.mapToEntity(teacherDto));
     }
 

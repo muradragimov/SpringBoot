@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class CourseService {
 
-    @Autowired
     private CourseRepository courseRepository;
 
-    public int integer = 0;
-    public List<Integer> integers = new ArrayList<>();
+    public CourseService(CourseRepository courseRepository) {
+        this.courseRepository = courseRepository;
+    }
 
     public List<CourseDto> getAll(){
         List<CourseEntity> courseEntities = courseRepository.findAll();
@@ -28,16 +28,5 @@ public class CourseService {
     public void add(CourseDto courseDto){
         CourseEntity courseEntity = CourseMapper.INSTANCE.mapToEntity(courseDto);
         courseRepository.save(courseEntity);
-    }
-
-    public void run() throws InterruptedException {
-        if(integer == 0){
-            for (int in=1; in< 1000; in++){
-                in = in+1;
-            }
-            integers.add(5);
-            integer++;
-        }
-        System.out.println(integers);
     }
 }

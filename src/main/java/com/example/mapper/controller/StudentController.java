@@ -1,12 +1,12 @@
 package com.example.mapper.controller;
 
-import com.example.mapper.dao.entity.CourseEntity;
-import com.example.mapper.model.dto.CourseDto;
 import com.example.mapper.model.dto.StudentDto;
 import com.example.mapper.service.StudentService;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;/*
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;*/
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,25 +15,28 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
     private StudentService studentService;
 
-    @GetMapping()
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    @GetMapping("/getList")
     public List<StudentDto> getSorted(@RequestParam String field){
         return studentService.getSorted(field);
     }
 
-    @GetMapping("/")
+    @GetMapping("/get")
     public List<StudentDto> getAll(@RequestParam Integer offset, @RequestParam Integer pageSize){
         return studentService.getAll(offset, pageSize);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public StudentDto get(@RequestParam Long id){
         return studentService.getById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping("/add")
     public void add(@RequestBody @Valid StudentDto studentDto){
         studentService.add(studentDto);
     }

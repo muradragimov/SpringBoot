@@ -5,7 +5,6 @@ import com.example.mapper.dao.entity.StudentEntity;
 import com.example.mapper.dao.repository.CourseRepository;
 import com.example.mapper.dao.repository.StudentRespository;
 import com.example.mapper.mapper.StudentMapper;
-import com.example.mapper.model.dto.CourseDto;
 import com.example.mapper.model.dto.StudentDto;
 import com.example.mapper.model.exceptionHandler.NotFoundExceptionHandler;
 import com.example.mapper.model.exceptionHandler.UserAlreadyExists;
@@ -24,11 +23,14 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
 
-    @Autowired
     private StudentRespository studentRespository;
 
-    @Autowired
     private CourseRepository courseRepository;
+
+    public StudentService(StudentRespository studentRespository, CourseRepository courseRepository) {
+        this.studentRespository = studentRespository;
+        this.courseRepository = courseRepository;
+    }
 
     public List<StudentDto> getSorted(String field){
         List<StudentEntity> studentEntities = studentRespository.findAll(Sort.by(Sort.Direction.DESC, field));
@@ -44,6 +46,10 @@ public class StudentService {
     public StudentDto getById(Long id){
         StudentEntity student = studentRespository.getReferenceById(id);
         return StudentMapper.INSTANCE.mapToDto(student);
+    }
+
+    public Optional<StudentEntity> getStudentByName(String name){
+        return studentRespository.getStudentEntityByName(name);
     }
 
     public String authenticateStudent(StudentDto studentDto) throws Exception{
@@ -65,7 +71,9 @@ public class StudentService {
         }
         BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
         studentEntity.setPassword(bCrypt.encode(studentEntity.getPassword()));
+
         studentRespository.save(studentEntity);
+        System.out.println(studentEntity);
     }
 
     public void update(String courseName, Long id){
